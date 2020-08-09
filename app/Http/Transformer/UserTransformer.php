@@ -2,6 +2,7 @@
 
 namespace App\Http\Transformer;
 
+use App\Http\Transformer\CourseTransformer;
 use App\Http\Transformer\RoleTransformer;
 use App\User;
 use League\Fractal\TransformerAbstract;
@@ -40,6 +41,10 @@ class UserTransformer extends TransformerAbstract
             $array['education'] = $user->education;
             $array['freelance'] = (int)$user->freelance;
             $array['gym_name']  = $user->gym_name;
+            if($user->hasRole('trainer'))
+            {
+                $array['courses']  = $this->userCourses($user);
+            }
         }
 
         return $array;
@@ -49,6 +54,17 @@ class UserTransformer extends TransformerAbstract
     {
         $roles = $user->roles()->get();
         return $this->collection($roles, new RoleTransformer) ; 
+    }
+
+    private function userCourses($user)
+    {
+        return  fractal()
+                    ->collection($user->courses()->get())
+                    ->transformWith(new CourseTransformer())
+                    ->serializeWith(new \Spatie\Fractalistic\ArraySerializer())
+                    ->includeVideos()
+                    ->toArray();
+
     }
 
 

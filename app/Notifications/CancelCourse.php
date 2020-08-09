@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ApproveTrainer extends Notification
+class CancelCourse extends Notification
 {
     use Queueable;
 
@@ -42,9 +42,9 @@ class ApproveTrainer extends Notification
     {
         return (new MailMessage)
                     ->greeting('Welcome To Fitness App')
-                    ->line('Gongratulation Your Account has been approved :)')
-                    ->line('Please Login and enjoy your journey with us.')
-                    ->line('Thanks for using our app .');
+                    ->line('Sorry Your Course hasn\'t been approved :(')
+                    ->line('Please Try again later')
+                    ->line('Thanks for using our app');
     }
 
     /**

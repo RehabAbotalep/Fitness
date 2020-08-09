@@ -16,6 +16,7 @@ return [
 	'cancelled' => 'Cancelled Successfully',
 	'not_approved' => 'Sorry,your account hasn\'t been approved yet',
 	'submitted' => 'Submitted Successfully',
+	'deleted'   => 'Deleted Successfully',
  	
 ];
 

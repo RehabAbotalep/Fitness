@@ -50,7 +50,14 @@ Route::group(['middleware'=> ['role:trainer' ,'auth:api' , 'approved_trainer'],
 
 	Route::resource('courses', 'CourseController');
 
-	Route::post('course/store/video', 'CourseController@storeVideo');
+	Route::post('course/store/video', 'VideoController@storeVideo');
+
+	Route::delete('videos/{id}','VideoController@destroy');
+
+	Route::get('videos/{id}','VideoController@show');
+
+	Route::post('videos/{id}','VideoController@updateVideo');
+
 });
 
 
@@ -64,4 +71,10 @@ Route::group(['middleware'=> ['role:admin' ,'auth:api'],'namespace' => 'Api\Admi
 	Route::get('trainers/{id}/approve','TrainerController@approve');
 
 	Route::get('trainers/{id}/cancel','TrainerController@cancel');
+
+	Route::get('admin/courses' , 'CourseController@allCourses');
+
+	Route::get('courses/{id}/approve' , 'CourseController@approveCourse');
+
+	Route::get('courses/{id}/cancel' , 'CourseController@cancelCourse');
 });
