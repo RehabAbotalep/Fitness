@@ -16,5 +16,5 @@ class Video extends Model implements HasMedia
 
     public $translatedAttributes = [ 'title' , 'body_focus'];
 
-    //protected $fillable = ['']
+    
 }

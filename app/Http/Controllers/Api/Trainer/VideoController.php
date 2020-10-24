@@ -30,6 +30,7 @@ class VideoController extends Controller
         ];
         $video = $course->videos()->create($data);
         $video->addMedia($request->video)->toMediaCollection('video');
+       // return $video->getFirstMediaUrl('video');
         return $this->dataResponse(null,trans('all.submitted'),200);
     }
 
